@@ -1,0 +1,9 @@
+*.pem
+*.p12
+*.key
+*.crt
+
+__pycache__/
+*.pyc
+
+models/*.pth
