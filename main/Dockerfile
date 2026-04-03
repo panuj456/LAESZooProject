@@ -3,7 +3,7 @@ FROM python:3.11-slim
 
 # Install system libraries for Image processing
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
@@ -12,7 +12,7 @@ WORKDIR /app
 # Install Torch (CPU version) and FastAPI
 # We use the CPU index to keep the image under 2GB
 RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
-RUN pip install --no-cache-dir fastapi uvicorn pillow python-multipart
+RUN pip install --no-cache-dir fastapi "uvicorn[standard]" pillow python-multipart
 
 # Copy files into the image
 COPY . .
